@@ -52,3 +52,5 @@ If you are using the FNFJSON extensions, you can even convert a note back into r
 ```cs
 Note.ToRawData(bool musthitsection);
 ```
+
+[nt]: <https://www.newtonsoft.com/json>
