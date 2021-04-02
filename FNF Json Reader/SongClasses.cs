@@ -82,14 +82,14 @@ namespace FNFJSON
 
 
         /// <summary>
-        /// Create a completely blank song
+        /// Create a completely blank song that uses default data.
         /// </summary>
         public Song()
         {
         }
 
         /// <summary>
-        /// Create a song from a list of notes, which is automatically split into sections for you.
+        /// Create a song from a list of notes, which is automatically split into sections for you. Currently bugged.
         /// </summary>
         public Song(string name, int bpmm, List<Note> Notes)
         {
@@ -211,13 +211,13 @@ namespace FNFJSON
         /// </summary>
         public bool mustHitSection = false;
         /// <summary>
-        /// Unused??
+        /// Completely unused variable.
         /// </summary>
         public int typeOfSection;
         /// <summary>
         /// BPM, only takes effect if changeBPM is true.
         /// </summary>
-        public int bpm;
+        public int bpm = 100;
         /// <summary>
         /// If set to true it will change the BPM to the BPM provided in the bpm variable for this section.
         /// </summary>
@@ -231,9 +231,23 @@ namespace FNFJSON
         /// </summary>
         public int lengthInSteps = 16;
 
+
+        /// <summary>
+        /// Creates a completely blank section
+        /// </summary>
         public Section()
         {
 
+        }
+
+
+        /// <summary>
+        /// Creates a section based off a list of notes.
+        /// </summary>
+        public Section(bool musthit, List<Note> notes)
+        {
+            mustHitSection = musthit;
+            SaveNotes(notes);
         }
 
         public override string ToString()
