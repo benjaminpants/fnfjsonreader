@@ -2,8 +2,6 @@
 
 A tool designed for making the reading and editing of FNF Song Data easy. Completely functional, but still in development, so functions might change or move around.
 
-Source coding coming when I figure out how to properly split the solution and seperate it from FNF JSON Tester and FNF Song Modifier
-
 ## Features
 - Deserialize and Serialize FNF Song Data
 - Compatibility with base FNF and Kade Engine
