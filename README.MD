@@ -4,7 +4,7 @@ A tool designed for making the reading and editing of FNF Song Data easy. Comple
 
 ## Features
 - Deserialize and Serialize FNF Song Data
-- Compatibility with base FNF and Kade Engine
+- Compatibility with base FNF and Kade Engine(And most likely the majority of FNF engines)
 - Various helper functions
 
 Also its pretty cool and has a lot of summaries for functions.
