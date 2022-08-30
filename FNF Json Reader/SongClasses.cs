@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
@@ -45,7 +45,7 @@ namespace FNFJSON
     {
         [JsonProperty("song")]
         public string Name = "Song";
-        public int bpm = 100;
+        public float bpm = 100f;
         /// <summary>
         /// A seemingly unused variable.
         /// </summary>
@@ -111,11 +111,11 @@ namespace FNFJSON
                 {
                     dadnotes++;
                 }
-                if (Notes[i].StrumTime >= nexindex || (i == (Notes.Count - 1) && Sections.Count == 0)) //if the starting time of the note is greater then the start of the next section put it into the next section
+                if (Notes[i].StrumTime >= nexindex || (i == (Notes.Count - 1))) //if the starting time of the note is greater then the start of the next section put it into the next section
                 {
-                    notestosave.Add(Notes[i]);
+                    Console.WriteLine((secid + 1) + ":" + nexindex);
                     secid++; //increase the sec id
-                    cursec.mustHitSection = (bfnotes >= dadnotes); //try to figure out who the section is for, and assign it as such
+                    cursec.mustHitSection = !(bfnotes >= dadnotes); //try to figure out who the section is for, and assign it as such
                     bfnotes = 0;
                     dadnotes = 0;
                     cursec.SaveNotes(notestosave); //save the notes after the section gets the person assigned so the notedata gets handled properly
@@ -133,18 +133,11 @@ namespace FNFJSON
         /// </summary>
         public int CalculateSectionStart(int index) //converted to c# directly from the games code and should output the exact same stuff.
         {
-            int curBPM = this.bpm;
+            float curBPM = this.bpm;
             float curPos = 0f;
-            for (int i = 0; i < (index + 1); i++)
+            for (int i = 0; i != index; i++)
             {
-                if (i < Sections.Count)
-                {
-                    if (Sections[i].changeBPM)
-                    {
-                        curBPM = Sections[i].bpm;
-                    }
-                }
-                curPos += 4 * (1000 * 60 / curBPM);
+                curPos += 4f * (1000f * 60f / curBPM);
             }
             return (int)curPos;
         }
@@ -217,7 +210,7 @@ namespace FNFJSON
         /// <summary>
         /// BPM, only takes effect if changeBPM is true.
         /// </summary>
-        public int bpm = 100;
+        public float bpm = 100f;
         /// <summary>
         /// If set to true it will change the BPM to the BPM provided in the bpm variable for this section.
         /// </summary>
